@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Wife</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-heart logo-heart"></i> For My Wife <i class="fa-solid fa-heart logo-heart"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#memories">Memories</a></li>
+            <li><a href="all-notes.html">Love Notes</a></li>
+            <li><a href="#surprise">Surprise</a></li>
+            <li><a href="#" id="music-btn"><i class="fa-solid fa-music"></i></a></li>
+        </ul>
+        <div class="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu">
+        <div class="close-menu"><i class="fa-solid fa-xmark"></i></div>
+        <ul>
+            <li><a href="#home" class="mobile-link">Home</a></li>
+            <li><a href="#story" class="mobile-link">Our Story</a></li>
+            <li><a href="#memories" class="mobile-link">Memories</a></li>
+            <li><a href="all-notes.html" class="mobile-link">Love Notes</a></li>
+            <li><a href="#surprise" class="mobile-link">Surprise</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('assets/photo1.jpg');">
+        <div class="hero-content">
+            <h1 class="script-font text-shadow">My Heart, My Wife,<br><span class="highlight">My Everything</span></h1>
+            <p class="text-shadow">Thank you for being my love, my strength,<br>and the most beautiful part of my life.<br>This little space is just for you, my queen. <i class="fa-solid fa-crown text-gold"></i></p>
+            <a href="#story" class="btn primary-btn pulse-anim">Start Our Journey <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="glowing-heart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </div>
+        
+        <!-- Floating hearts in hero -->
+        <div class="floating-hearts">
+            <i class="fa-solid fa-heart f-heart h1"></i>
+            <i class="fa-solid fa-heart f-heart h2"></i>
+            <i class="fa-solid fa-heart f-heart h3"></i>
+            <i class="fa-solid fa-heart f-heart h4"></i>
+        </div>
+    </header>
+
+    <!-- Our Story Section -->
+    <section id="story" class="section our-story">
+        <div class="story-header">
+            <h2 class="script-font">Our Story <i class="fa-solid fa-heart text-pink"></i></h2>
+            <p>A journey of love, laughter and endless memories.</p>
+        </div>
+        <div class="story-container">
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-heart"></i></div>
+                    <div class="timeline-content">
+                        <h3>We Met</h3>
+                        <span class="date">2 Aug 2023</span>
+                        <p>The day our story began.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                    <div class="timeline-content">
+                        <h3>First Date</h3>
+                        <span class="date">2023</span>
+                        <p>A shy hello and a warm coffee.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-heart"></i></div>
+                    <div class="timeline-content">
+                        <h3>Made It Official</h3>
+                        <span class="date">Pending</span>
+                        <p>The day you said YES to forever <i class="fa-solid fa-heart text-pink" style="font-size:0.8rem"></i></p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-ring"></i></div>
+                    <div class="timeline-content">
+                        <h3>Our Beautiful Day</h3>
+                        <span class="date">5 Nov 2023</span>
+                        <p>The start of our new chapter together.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-heart"></i></div>
+                    <div class="timeline-content">
+                        <h3>Forever</h3>
+                        <span class="date">Always ❤️</span>
+                        <p>Many more memories to create together.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-image">
+                <div class="polaroid">
+                    <div class="polaroid-img" style="background-image: url('assets/photo2.jpg'); background-position: top center;"></div>
+                    <i class="fa-solid fa-heart polaroid-heart"></i>
+                </div>
+                <div class="dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memories and Notes Section (Dual Grid) -->
+    <section class="section dual-grid-container">
+        
+        <!-- Our Memories -->
+        <div id="memories" class="memories-section">
+            <div class="section-top">
+                <h2 class="script-font">Our Memories <i class="fa-solid fa-camera-retro"></i></h2>
+                <button class="btn outline-btn small-btn click-to-open">Gallery</button>
+            </div>
+            <div class="memories-grid">
+                <div class="memory-img tall fade-in click-to-open" style="background-image: url('assets/photo3.jpg'); cursor: pointer;"></div>
+                <div class="memory-img fade-in click-to-open" style="background-image: url('assets/photo1.jpg'); cursor: pointer;"></div>
+                <div class="memory-img fade-in click-to-open" style="background-image: url('assets/photo4.png'); cursor: pointer;"></div>
+                <div class="memory-img fade-in click-to-open" style="background-image: url('assets/photo5.png'); cursor: pointer;"></div>
+                
+                <div class="memory-text-card fade-in">
+                    <i class="fa-regular fa-heart"></i>
+                    <p>Every moment with you is my favourite memory.</p>
+                </div>
+                
+                <div class="memory-img fade-in click-to-open" style="background-image: url('assets/photo2.jpg'); cursor: pointer;"></div>
+            </div>
+        </div>
+
+        <!-- Love Notes -->
+        <div id="notes" class="notes-section">
+            <div class="section-top">
+                <h2 class="script-font">Love Notes <i class="fa-solid fa-envelope-open-text text-pink"></i></h2>
+                <a href="all-notes.html" class="btn outline-btn small-btn">View All</a>
+            </div>
+            <div class="notes-grid">
+                <div class="note-card slide-up">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                    <p>You are not just my wife, you are my best friend, my soul, my today and all of my tomorrows.</p>
+                    <i class="fa-solid fa-heart note-heart"></i>
+                </div>
+                <div class="note-card slide-up" style="animation-delay: 0.1s;">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                    <p>Thank you for making my life so beautiful just by being in it.</p>
+                    <i class="fa-solid fa-heart note-heart"></i>
+                </div>
+                <div class="note-card slide-up" style="animation-delay: 0.2s;">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                    <p>I promise to love you in every lifetime, in every world, in every story.</p>
+                    <i class="fa-solid fa-heart note-heart"></i>
+                </div>
+            </div>
+            <a href="all-notes.html" class="btn primary-btn full-width slide-up" style="animation-delay: 0.3s; text-decoration: none;">Open All Notes <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Countdown and Surprise Section -->
+    <section class="section dual-grid-container dark-grid">
+        
+        <!-- Countdown -->
+        <div class="countdown-section" id="countdown-container">
+            <h2 class="script-font text-white" id="countdown-title">Birthday Countdown <i class="fa-solid fa-cake-candles"></i></h2>
+            <div class="countdown-timer" id="timer-display">
+                <div class="time-unit">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="divider"></div>
+                <div class="time-unit">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="divider"></div>
+                <div class="time-unit">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="divider"></div>
+                <div class="time-unit">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">Seconds</span>
+                </div>
+            </div>
+            
+            <div id="birthday-message" class="hidden-message">
+                <h3 class="script-font text-center">Happy Birthday My Love! 🎉</h3>
+                <p class="text-center">Wishing the most beautiful soul the happiest of birthdays. You deserve the world and more! ❤️</p>
+                <div class="cake-icon pulse-anim mt-2"><i class="fa-solid fa-cake-candles"></i></div>
+            </div>
+            
+            <p class="text-white text-center text-sm mt-3" id="countdown-subtitle">Because tomorrow, we celebrate the most beautiful angel – YOU! <i class="fa-solid fa-heart" style="color: #ff8fa3;"></i></p>
+        </div>
+
+        <!-- Surprise -->
+        <div id="surprise" class="surprise-section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('assets/photo3.jpg');">
+            <h2 class="script-font text-white">A Little Surprise for You <i class="fa-solid fa-sparkles text-gold"></i></h2>
+            <div class="glowing-heart-lg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </div>
+            <button class="btn outline-btn text-white click-to-open">Click to Open Gallery</button>
+            <p class="text-white text-center text-sm mt-2">Something special is waiting for you my love <i class="fa-solid fa-heart text-pink"></i></p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="bg-hearts">
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-heart"></i>
+        </div>
+
+        <div class="footer-content">
+            <h2 class="script-font">To My Beautiful Wife <i class="fa-solid fa-heart text-pink" style="font-size: 1.5rem;"></i></h2>
+            <p>You are the blessing I never knew I needed.<br>You complete me in every way possible.<br>Thank you for walking with me, believing in me<br>and loving me endlessly.</p>
+            <p class="highlight-text">I love you more than words can ever say.</p>
+            <p class="signature script-font">- Always Yours <i class="fa-solid fa-heart text-pink" style="font-size: 1.2rem;"></i></p>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="heart-mask-container">
+                <div class="couple-heart-img" style="background-image: url('assets/photo5.png'); background-position: center 20%;"></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Gallery Modal -->
+    <div id="gallery-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal"><i class="fa-solid fa-xmark"></i></span>
+            <div class="gallery-container">
+                <div class="gallery-slide active">
+                    <img src="assets/photo1.jpg" alt="Our Memory 1">
+                    <div class="slide-caption script-font">Every moment with you is magic ✨</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="assets/photo2.jpg" alt="Our Memory 2">
+                    <div class="slide-caption script-font">My favorite place is by your side ❤️</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="assets/photo3.jpg" alt="Our Memory 3">
+                    <div class="slide-caption script-font">Your smile lights up my world 🌟</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="assets/photo4.png" alt="Our Memory 4">
+                    <div class="slide-caption script-font">Forever isn't long enough 🥰</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="assets/photo5.png" alt="Our Memory 5">
+                    <div class="slide-caption script-font">My heart belongs to you, always 💖</div>
+                </div>
+                
+                <a class="prev-slide"><i class="fa-solid fa-chevron-left"></i></a>
+                <a class="next-slide"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            
+            <div class="gallery-dots">
+                <span class="g-dot active" data-index="0"></span>
+                <span class="g-dot" data-index="1"></span>
+                <span class="g-dot" data-index="2"></span>
+                <span class="g-dot" data-index="3"></span>
+                <span class="g-dot" data-index="4"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio element (hidden) -->
+    <audio id="bg-music" loop>
+        <source src="" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
