@@ -119,6 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
                     modal.classList.add('show');
                     createHearts(this);
+                    
+                    const slideTarget = this.getAttribute('data-slide');
+                    if (slideTarget !== null) {
+                        slideIndex = parseInt(slideTarget);
+                        showSlides(slideIndex);
+                    } else if (!document.querySelector('.gallery-slide.active')) {
+                        showSlides(0);
+                    }
+
                     rainInterval = setInterval(createRainHeart, 300);
                 });
             });
