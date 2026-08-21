@@ -5,83 +5,93 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeMenu = document.querySelector('.close-menu');
     const mobileLinks = document.querySelectorAll('.mobile-link');
 
-    hamburger.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-    });
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+    }
 
-    closeMenu.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-    });
-
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
+    if (closeMenu && mobileMenu) {
+        closeMenu.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
         });
-    });
+    }
+
+    if (mobileLinks.length > 0 && mobileMenu) {
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+    }
 
     // Smooth Scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    if (anchorLinks.length > 0) {
+        anchorLinks.forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-    });
+    }
 
     // Birthday Countdown Logic (Tomorrow from current date at midnight)
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0); 
-    const targetDate = tomorrow.getTime();
-
     const timerDisplay = document.getElementById('timer-display');
     const birthdayMessage = document.getElementById('birthday-message');
     const countdownTitle = document.getElementById('countdown-title');
     const countdownSubtitle = document.getElementById('countdown-subtitle');
 
-    const countdownFunction = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+    if (timerDisplay || birthdayMessage) {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0); 
+        const targetDate = tomorrow.getTime();
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const countdownFunction = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
 
-        const daysEl = document.getElementById("days");
-        if(daysEl) daysEl.innerText = days < 10 ? "0" + days : days;
-        
-        const hoursEl = document.getElementById("hours");
-        if(hoursEl) hoursEl.innerText = hours < 10 ? "0" + hours : hours;
-        
-        const minEl = document.getElementById("minutes");
-        if(minEl) minEl.innerText = minutes < 10 ? "0" + minutes : minutes;
-        
-        const secEl = document.getElementById("seconds");
-        if(secEl) secEl.innerText = seconds < 10 ? "0" + seconds : seconds;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        if (distance < 0) {
-            clearInterval(countdownFunction);
-            if (timerDisplay) timerDisplay.style.display = 'none';
-            if (countdownTitle) countdownTitle.innerHTML = 'Happy Birthday! <i class="fa-solid fa-heart text-pink"></i>';
-            if (countdownSubtitle) countdownSubtitle.style.display = 'none';
-            if (birthdayMessage) {
-                birthdayMessage.style.display = 'flex';
-                // Small animation when shown
-                setTimeout(() => {
-                    birthdayMessage.classList.add('fade-in', 'visible');
-                }, 100);
+            const daysEl = document.getElementById("days");
+            if(daysEl) daysEl.innerText = days < 10 ? "0" + days : days;
+            
+            const hoursEl = document.getElementById("hours");
+            if(hoursEl) hoursEl.innerText = hours < 10 ? "0" + hours : hours;
+            
+            const minEl = document.getElementById("minutes");
+            if(minEl) minEl.innerText = minutes < 10 ? "0" + minutes : minutes;
+            
+            const secEl = document.getElementById("seconds");
+            if(secEl) secEl.innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                if (timerDisplay) timerDisplay.style.display = 'none';
+                if (countdownTitle) countdownTitle.innerHTML = 'Happy Birthday! <i class="fa-solid fa-heart text-pink"></i>';
+                if (countdownSubtitle) countdownSubtitle.style.display = 'none';
+                if (birthdayMessage) {
+                    birthdayMessage.style.display = 'flex';
+                    setTimeout(() => {
+                        birthdayMessage.classList.add('fade-in', 'visible');
+                    }, 100);
+                }
             }
-        }
-    }, 1000);
+        }, 1000);
+    }
 
     // Gallery Logic
     const galleryBtns = document.querySelectorAll('.click-to-open');
@@ -89,19 +99,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.querySelector('.close-modal');
     
     if (modal) {
-        galleryBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                modal.classList.add('show');
-                createHearts(this);
+        if (galleryBtns.length > 0) {
+            galleryBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modal.classList.add('show');
+                    createHearts(this);
+                });
             });
-        });
+        }
 
-        closeModal.addEventListener('click', () => {
-            modal.classList.remove('show');
-        });
+        if (closeModal) {
+            closeModal.addEventListener('click', () => {
+                modal.classList.remove('show');
+            });
+        }
 
-        // Close on outside click
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('show');
@@ -125,7 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
             dots.forEach(dot => dot.classList.remove('active'));
             
             slides[slideIndex].classList.add('active');
-            dots[slideIndex].classList.add('active');
+            if (dots.length > slideIndex) {
+                dots[slideIndex].classList.add('active');
+            }
         }
 
         if (prev && next) {
@@ -140,15 +155,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        dots.forEach(dot => {
-            dot.addEventListener('click', function() {
-                slideIndex = parseInt(this.getAttribute('data-index'));
-                showSlides(slideIndex);
+        if (dots.length > 0) {
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    slideIndex = parseInt(this.getAttribute('data-index'));
+                    showSlides(slideIndex);
+                });
             });
-        });
+        }
     }
 
-    // Background Music Toggle (Optional feature)
+    // Background Music Toggle
     const musicBtn = document.getElementById('music-btn');
     const bgMusic = document.getElementById('bg-music');
     let isPlaying = false;
@@ -161,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
                 musicBtn.style.color = '';
             } else {
-                // Handle potential autoplay blocking
                 const playPromise = bgMusic.play();
                 if (playPromise !== undefined) {
                     playPromise.then(_ => {
@@ -181,23 +197,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Scroll Animations (Intersection Observer)
     const animatedElements = document.querySelectorAll('.fade-in, .slide-up');
     
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
+    if (animatedElements.length > 0) {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        animatedElements.forEach(el => {
+            observer.observe(el);
         });
-    }, observerOptions);
-
-    animatedElements.forEach(el => {
-        observer.observe(el);
-    });
+    }
 
     // Helper function for heart explosion
     function createHearts(element) {
@@ -217,10 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             document.body.appendChild(heart);
             
-            // Force reflow
             void heart.offsetWidth;
             
-            // Animate
             const angle = Math.random() * Math.PI * 2;
             const velocity = 50 + Math.random() * 100;
             const tx = Math.cos(angle) * velocity;
@@ -229,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
             heart.style.transform = `translate(${tx}px, ${ty}px) scale(0)`;
             heart.style.opacity = '0';
             
-            // Remove after animation
             setTimeout(() => {
                 heart.remove();
             }, 1000);
