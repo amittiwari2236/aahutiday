@@ -1189,3 +1189,39 @@ html {
         opacity: 0;
     }
 }
+
+/* Welcome Overlay */
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--dark-text);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.welcome-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.welcome-content {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transform: scale(0.9);
+    animation: pulseWelcome 2s infinite alternate;
+}
+
+@keyframes pulseWelcome {
+    from { transform: scale(0.95); }
+    to { transform: scale(1.05); }
+}

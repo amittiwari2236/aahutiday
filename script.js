@@ -25,6 +25,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Welcome Overlay & Audio Logic
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    const enterBtn = document.getElementById('enter-btn');
+    const bgMusic = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+    let isPlaying = false;
+
+    if (bgMusic) {
+        // Loop logic for 33s to 52s
+        bgMusic.addEventListener('timeupdate', () => {
+            if (bgMusic.currentTime >= 52) {
+                bgMusic.currentTime = 33;
+            }
+        });
+    }
+
+    if (welcomeOverlay && enterBtn) {
+        // Prevent scrolling initially
+        document.body.style.overflow = 'hidden';
+
+        enterBtn.addEventListener('click', () => {
+            welcomeOverlay.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            
+            if (bgMusic) {
+                bgMusic.currentTime = 33; // Start from 33 seconds
+                const playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        isPlaying = true;
+                        if (musicBtn) {
+                            musicBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+                            musicBtn.style.color = 'var(--primary-pink)';
+                        }
+                    }).catch(error => {
+                        console.log("Audio play failed: ", error);
+                    });
+                }
+            }
+        });
+    }
+
     // Smooth Scrolling for navigation links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     if (anchorLinks.length > 0) {
@@ -194,11 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Background Music Toggle
-    const musicBtn = document.getElementById('music-btn');
-    const bgMusic = document.getElementById('bg-music');
-    let isPlaying = false;
-
     if (musicBtn && bgMusic) {
         musicBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -215,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                     .catch(error => {
                         console.log("Audio play failed: ", error);
-                        alert("Please add an audio source in the HTML to play music.");
+                        alert("Please make sure song.mp3 is added to the assets folder.");
                     });
                 }
             }
