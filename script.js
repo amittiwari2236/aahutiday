@@ -35,14 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Countdown Timer Logic
-    // Set to next Valentine's Day or Anniversary (Adjust date here)
-    const currentYear = new Date().getFullYear();
-    // Defaulting to Valentine's Day next year or current year if it hasn't passed
-    let targetDate = new Date(`Feb 14, ${currentYear} 00:00:00`).getTime();
-    if (new Date().getTime() > targetDate) {
-        targetDate = new Date(`Feb 14, ${currentYear + 1} 00:00:00`).getTime();
-    }
+    // Birthday Countdown Logic (Tomorrow from current date at midnight)
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0); 
+    const targetDate = tomorrow.getTime();
+
+    const timerDisplay = document.getElementById('timer-display');
+    const birthdayMessage = document.getElementById('birthday-message');
+    const countdownTitle = document.getElementById('countdown-title');
+    const countdownSubtitle = document.getElementById('countdown-subtitle');
 
     const countdownFunction = setInterval(() => {
         const now = new Date().getTime();
@@ -53,31 +56,95 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        const daysEl = document.getElementById("days");
+        if(daysEl) daysEl.innerText = days < 10 ? "0" + days : days;
+        
+        const hoursEl = document.getElementById("hours");
+        if(hoursEl) hoursEl.innerText = hours < 10 ? "0" + hours : hours;
+        
+        const minEl = document.getElementById("minutes");
+        if(minEl) minEl.innerText = minutes < 10 ? "0" + minutes : minutes;
+        
+        const secEl = document.getElementById("seconds");
+        if(secEl) secEl.innerText = seconds < 10 ? "0" + seconds : seconds;
 
         if (distance < 0) {
             clearInterval(countdownFunction);
-            document.getElementById("days").innerText = "00";
-            document.getElementById("hours").innerText = "00";
-            document.getElementById("minutes").innerText = "00";
-            document.getElementById("seconds").innerText = "00";
+            if (timerDisplay) timerDisplay.style.display = 'none';
+            if (countdownTitle) countdownTitle.innerHTML = 'Happy Birthday! <i class="fa-solid fa-heart text-pink"></i>';
+            if (countdownSubtitle) countdownSubtitle.style.display = 'none';
+            if (birthdayMessage) {
+                birthdayMessage.style.display = 'flex';
+                // Small animation when shown
+                setTimeout(() => {
+                    birthdayMessage.classList.add('fade-in', 'visible');
+                }, 100);
+            }
         }
     }, 1000);
 
-    // Surprise Button Interaction
-    const surpriseBtn = document.querySelector('.click-to-open');
-    if (surpriseBtn) {
-        surpriseBtn.addEventListener('click', function() {
-            // Create a beautiful heart explosion effect
-            createHearts(this);
+    // Gallery Logic
+    const galleryBtns = document.querySelectorAll('.click-to-open');
+    const modal = document.getElementById('gallery-modal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    if (modal) {
+        galleryBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.classList.add('show');
+                createHearts(this);
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        // Close on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+
+        // Gallery slideshow
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.gallery-slide');
+        const dots = document.querySelectorAll('.g-dot');
+        const prev = document.querySelector('.prev-slide');
+        const next = document.querySelector('.next-slide');
+
+        function showSlides(n) {
+            if (!slides.length) return;
             
-            // Show romantic alert
-            setTimeout(() => {
-                alert("You are my today and all of my tomorrows. I love you more than words can express! ❤️✨");
-            }, 500);
+            if (n >= slides.length) slideIndex = 0;
+            if (n < 0) slideIndex = slides.length - 1;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[slideIndex].classList.add('active');
+            dots[slideIndex].classList.add('active');
+        }
+
+        if (prev && next) {
+            prev.addEventListener('click', () => {
+                slideIndex--;
+                showSlides(slideIndex);
+            });
+
+            next.addEventListener('click', () => {
+                slideIndex++;
+                showSlides(slideIndex);
+            });
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                slideIndex = parseInt(this.getAttribute('data-index'));
+                showSlides(slideIndex);
+            });
         });
     }
 
@@ -133,16 +200,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Helper function for heart explosion
-    function createHearts(button) {
+    function createHearts(element) {
+        if (!element) return;
+        const rect = element.getBoundingClientRect();
         for (let i = 0; i < 15; i++) {
             const heart = document.createElement('i');
             heart.classList.add('fa-solid', 'fa-heart');
             heart.style.position = 'absolute';
             heart.style.color = '#ff6b81';
             heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-            heart.style.left = (button.getBoundingClientRect().left + button.offsetWidth / 2) + 'px';
-            heart.style.top = (button.getBoundingClientRect().top + button.offsetHeight / 2) + 'px';
-            heart.style.zIndex = '1000';
+            heart.style.left = (rect.left + rect.width / 2) + 'px';
+            heart.style.top = (rect.top + window.scrollY + rect.height / 2) + 'px';
+            heart.style.zIndex = '3000'; // above modal
             heart.style.pointerEvents = 'none';
             heart.style.transition = 'all 1s ease-out';
             
@@ -155,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const angle = Math.random() * Math.PI * 2;
             const velocity = 50 + Math.random() * 100;
             const tx = Math.cos(angle) * velocity;
-            const ty = Math.sin(angle) * velocity - 50; // slightly upwards
+            const ty = Math.sin(angle) * velocity - 50; 
             
             heart.style.transform = `translate(${tx}px, ${ty}px) scale(0)`;
             heart.style.opacity = '0';
