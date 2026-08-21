@@ -980,6 +980,7 @@ html {
 
 .modal-content {
     position: relative;
+    z-index: 10;
     width: 95%;
     max-width: 800px;
     height: 70vh;
@@ -1158,5 +1159,33 @@ html {
 @media (min-width: 768px) {
     .cake-icon {
         font-size: 4rem;
+    }
+}
+
+/* Falling Hearts Rain for Modal */
+.heart-rain {
+    position: absolute;
+    top: -10vh;
+    color: rgba(255, 107, 129, 0.7);
+    pointer-events: none;
+    z-index: 1; /* Behind modal content */
+    animation: fall linear forwards;
+    filter: drop-shadow(0 0 5px rgba(255, 107, 129, 0.5));
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0;
     }
 }

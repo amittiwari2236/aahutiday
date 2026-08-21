@@ -99,12 +99,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.querySelector('.close-modal');
     
     if (modal) {
+        let rainInterval;
+
+        function createRainHeart() {
+            const heart = document.createElement('i');
+            heart.classList.add('fa-solid', 'fa-heart', 'heart-rain');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 15 + 10 + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            modal.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
         if (galleryBtns.length > 0) {
             galleryBtns.forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     modal.classList.add('show');
                     createHearts(this);
+                    rainInterval = setInterval(createRainHeart, 300);
                 });
             });
         }
@@ -112,12 +127,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (closeModal) {
             closeModal.addEventListener('click', () => {
                 modal.classList.remove('show');
+                clearInterval(rainInterval);
+                // Clean up existing rain hearts
+                document.querySelectorAll('.heart-rain').forEach(h => h.remove());
             });
         }
 
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('show');
+                clearInterval(rainInterval);
+                document.querySelectorAll('.heart-rain').forEach(h => h.remove());
             }
         });
 
